@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Твоё письмо ✨</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            max-width: 400px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 1s ease-out, opacity 1s ease-out;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        .btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #ff4757;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="letter">
+        <h1>Дарина, замечательная! 💖</h1>
+        <p>это письмо создано для тебя одной. ты умная, сильная и крайне интересная!</p>
+        <p>хочу, чтобы ты всегда помнила: я не останавлюсь в попытках удивить тебя 🦋</p>
+        <button class="btn" onclick="closeLetter()">Закрыть</button>
+    </div>
+    
+    <script>
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('letter').style.transform = 'scale(1)';
+                document.getElementById('letter').style.opacity = '1';
+            }, 1000);
+        }
+
+        function closeLetter() {
+            document.getElementById('letter').style.transform = 'scale(0)';
+            document.getElementById('letter').style.opacity = '0';
+        }
+    </script>
+</body>
+</html>
