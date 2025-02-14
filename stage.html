@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Твоё письмо 💌</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        .envelope {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            background: #f36f6f; /* Более тёплый цвет для конверта */
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.5s ease-in-out;
+            z-index: 1;
+        }
+        .envelope:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 175px solid transparent;
+            border-right: 175px solid transparent;
+            border-bottom: 125px solid #ff8a8a; /* Светлый оттенок */
+            transition: transform 0.5s ease-in-out;
+        }
+        .letter {
+            position: absolute;
+            width: 310px;
+            height: 200px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 14px;
+            color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            background-image: linear-gradient(to bottom, transparent 19px, #e0e0e0 20px); /* Линии на фоне */
+            background-size: 100% 28px;
+            z-index: 2;
+            position: absolute;
+            top: 60px; /* Опустил текст еще ниже */
+        }
+        .letter::before {
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 8px;
+            width: 7px;
+            height: 7px;
+            background-color: gray;
+            border-radius: 50%;
+            box-shadow: 
+                0 30px gray, 
+                0 60px gray, 
+                0 90px gray, 
+                0 120px gray, 
+                0 150px gray;
+        }
+        .letter p {
+            margin: 0;
+            line-height: 26px;
+            text-align: left;
+        }
+        .close-btn {
+            margin-top: 35px;
+            padding: 10px 20px;
+            background: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-btn:hover {
+            background: #ff4757; /* Эффект на кнопку */
+        }
+
+        /* Анимация падающих звезд */
+        .star {
+            position: absolute;
+            top: -10px;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            animation: fall 2s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10px;
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
+        }
+
+        /* Луна */
+        .moon {
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 100px;
+            height: 100px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" onclick="openEnvelope()">
+        <div class="letter">
+            <p>Дари, замечательная! 💖</p>
+            <p>ты достойна восхищения и тепла</p>
+            <p>   _  </p>
+            <p>хочу, чтобы ты всегда помнила: я не остановлюсь в попытках улыбнуть тебя</p>
+        </div>
+        <div class="envelope"></div>
+        <button class="close-btn" onclick="closeLetter(event)">Закрыть</button>
+    </div>
+
+    <div class="moon"></div>
+
+    <!-- Падающие звезды -->
+    <div class="star" style="left: 10%; animation-duration: 3s;"></div>
+    <div class="star" style="left: 30%; animation-duration: 2s;"></div>
+    <div class="star" style="left: 50%; animation-duration: 4s;"></div>
+    <div class="star" style="left: 70%; animation-duration: 3.5s;"></div>
+    <div class="star" style="left: 90%; animation-duration: 5s;"></div>
+
+    <script>
+        function openEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const letter = document.querySelector('.letter');
+            const closeBtn = document.querySelector('.close-btn');
+            
+            envelope.style.transform = 'translateY(30px) scale(0.95)';
+            letter.style.opacity = '1';
+            letter.style.transform = 'translateY(-20px)';
+            closeBtn.style.display = 'block';
+        }
+        
+        function closeLetter(event) {
+            event.stopPropagation();
+            const envelope = document.querySelector('.envelope');
+            const letter = document.querySelector('.letter');
+            const closeBtn = document.querySelector('.close-btn');
+            
+            envelope.style.transform = 'translateY(0) scale(1)';
+            letter.style.opacity = '0';
+            letter.style.transform = 'translateY(10px)';
+            closeBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
